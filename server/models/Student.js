@@ -3,7 +3,7 @@
 import { Schema, model } from 'mongoose';
 import { genSaltSync, hashSync } from 'bcrypt';
 
-const UserSchema = new Schema(
+const StudentSchema = new Schema(
 	{
 		role: {
 			type: String,
@@ -20,13 +20,13 @@ const UserSchema = new Schema(
 		},
 		hashedPassword: {
 			type: String,
-			required: true,
+			required: 'Password is requie',
 		},
 	},
 	{ timestamps: true }
 );
 
-UserSchema.virtual('password')
+StudentSchema.virtual('password')
 	.set(function (password) {
 		this._password = password;
 		this.salt = this.makeSalt();
@@ -37,7 +37,7 @@ UserSchema.virtual('password')
 	});
 
 // Method
-UserSchema.methods = {
+StudentSchema.methods = {
 	makeSalt: function () {
 		const saltRounds = 10;
 		return genSaltSync(saltRounds);
@@ -52,4 +52,4 @@ UserSchema.methods = {
 	},
 };
 
-export default model('User', UserSchema, 'users');
+export default model('Student', StudentSchema, 'students');

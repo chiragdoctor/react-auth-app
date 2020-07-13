@@ -1,0 +1,13 @@
+{
+  "name": "react-auth-app",
+  "version": "1.0.0",
+  "description": "The MERN auth app ",
+  "main": "index.js",
+  "author": "vd89 <daxcode89@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "morgan": "^1.10.0"
+  }
+}
