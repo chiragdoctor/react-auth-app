@@ -8,7 +8,7 @@ import dbController from './controller/dbController';
 import config from './config/default';
 import studentRoutes from './routers/studentRouters';
 import facultyRoutes from './routers/facultyRouters';
-import authRoutes from './routers/authRouters'
+import authRoutes from './routers/authRouters';
 
 const app = express();
 
@@ -24,10 +24,10 @@ app.use(express.urlencoded({ extended: false }));
 // Routes
 app.use('/api/student', studentRoutes);
 app.use('/api/faculty', facultyRoutes);
-app.use('/api/auth',authRoutes)
+app.use('/api/auth', authRoutes);
 
 // Server
 const port = config.port;
 app.listen(port, () => {
-	console.log(`Server is running on the port ${port}.... 🤺 🤺`);
+  console.log(`Server is running on the port ${port}.... 🤺 🤺`);
 });
