@@ -1,7 +1,6 @@
-/** @format */
-
 import { Router } from 'express';
 import studentController from '../controller/studentController';
+import { registerRules, validate } from '../validator/index';
 
 const router = Router();
 const { studentRegister } = studentController;
@@ -12,9 +11,12 @@ router.get('/', (req, res) => {
 
 /* 
   @ Student Post 
+  @ Public Route
   @ /api/student/register 
   POST
 */
-router.post('/register', studentRegister);
+router.post('/register', registerRules(), validate, studentRegister);
+
+
 
 export default router;

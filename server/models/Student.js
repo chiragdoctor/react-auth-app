@@ -1,7 +1,7 @@
 /** @format */
 
 import { Schema, model } from 'mongoose';
-import { genSaltSync, hashSync } from 'bcrypt';
+import { genSaltSync, hashSync, compareSync } from 'bcrypt';
 
 const StudentSchema = new Schema(
 	{
@@ -50,6 +50,9 @@ StudentSchema.methods = {
 			return err;
 		}
 	},
+	comparePassword: function (password) {
+		return compareSync(password,this.hashedPassword)
+	}
 };
 
 export default model('Student', StudentSchema, 'students');
