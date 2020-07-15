@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
-import { REGISTER_FAIL, REGISTER_SUCCESS, LOGIN_SUCCESS, USER_LOADED, AUTH_ERROR } from '../types';
+import { REGISTER_FAIL, REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, CLEAR_ERRORS } from '../types';
 import setAuthToken from '../../utils/setAuthToken';
 
 const AuthState = (props) => {
@@ -34,6 +34,7 @@ const AuthState = (props) => {
       });
     }
   };
+
   const registerStudent = async (formData) => {
     const config = {
       headers: {
@@ -55,6 +56,33 @@ const AuthState = (props) => {
     }
   };
 
+  const registerFaculty = async (formData) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.post('/api/faculty/register', formData, config);
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      });
+      loadUser();
+    } catch (err) {
+      dispatch({
+        type: REGISTER_FAIL,
+        payload: err.response.data.errMsg,
+      });
+    }
+  };
+
+  const clearErrors = () => {
+    dispatch({
+      type: CLEAR_ERRORS,
+    });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -65,6 +93,8 @@ const AuthState = (props) => {
         error: state.error,
         loadUser,
         registerStudent,
+        registerFaculty,
+        clearErrors,
       }}
     >
       {props.children}

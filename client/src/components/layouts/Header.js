@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AuthContext from '../../context/auth/authContext';
 
 function Header() {
+  const authContext = useContext(AuthContext);
+  const { user } = authContext;
+
   return (
     <header className='header'>
       <div className='logo-container'>
@@ -114,7 +118,7 @@ function Header() {
                   <li>
                     <a href='#!' className='clearfix'>
                       <figure className='image'>
-                        <img src='img/%21sample-user.jpg' alt='Joseph Doe Junior' className='rounded-circle' />
+                        <img src='img/sample-user.jpg' alt='Joseph Doe Junior' className='rounded-circle' />
                       </figure>
                       <span className='title'>Joseph Doe</span>
                       <span className='message'>Lorem ipsum dolor sit.</span>
@@ -123,7 +127,7 @@ function Header() {
                   <li>
                     <a href='#!' className='clearfix'>
                       <figure className='image'>
-                        <img src='img/%21sample-user.jpg' alt='Joseph Junior' className='rounded-circle' />
+                        <img src='img/sample-user.jpg' alt='Joseph Junior' className='rounded-circle' />
                       </figure>
                       <span className='title'>Joseph Junior</span>
                       <span className='message truncate'>
@@ -141,7 +145,7 @@ function Header() {
                   <li>
                     <a href='#!' className='clearfix'>
                       <figure className='image'>
-                        <img src='img/%21sample-user.jpg' alt='Joe Junior' className='rounded-circle' />
+                        <img src='img/sample-user.jpg' alt='Joe Junior' className='rounded-circle' />
                       </figure>
                       <span className='title'>Joe Junior</span>
                       <span className='message'>Lorem ipsum dolor sit.</span>
@@ -150,7 +154,7 @@ function Header() {
                   <li>
                     <a href='#!' className='clearfix'>
                       <figure className='image'>
-                        <img src='img/%21sample-user.jpg' alt='Joseph Junior' className='rounded-circle' />
+                        <img src='img/sample-user.jpg' alt='Joseph Junior' className='rounded-circle' />
                       </figure>
                       <span className='title'>Joseph Junior</span>
                       <span className='message'>
@@ -229,14 +233,17 @@ function Header() {
         <div id='userbox' className='userbox'>
           <a href='#!' data-toggle='dropdown'>
             <figure className='profile-picture'>
-              <img src='img/%21logged-user.jpg' alt='Joseph Doe' className='rounded-circle' data-lock-picture='img/%21logged-user.jpg' />
+              <img src='img/logged-user.jpg' alt='Joseph Doe' className='rounded-circle' data-lock-picture='img/%21logged-user.jpg' />
             </figure>
             <div className='profile-info' data-lock-name='John Doe' data-lock-email='johndoe@okler.com'>
-              <span className='name'>John Doe Junior</span>
-              <span className='role'>administrator</span>
+              <span className='name'>{user && user.name}</span>
+              <span className='role'>{user && user.role}</span>
             </div>
 
             <i className='fa custom-caret'></i>
+          </a>
+          <a role='menuitem' tabIndex='-1' href='pages-signin.html' style={{ marginLeft: 10 }}>
+            <i className='fas fa-power-off'></i> Logout
           </a>
 
           <div className='dropdown-menu'>

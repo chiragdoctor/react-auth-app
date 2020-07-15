@@ -1,18 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import AuthContext from '../context/auth/authContext';
+import AlertContext from '../context/alert/alertContext';
+import Alert from '../components/layouts/Alert';
+function Register(props) {
+  const authContext = useContext(AuthContext);
+  const alertContext = useContext(AlertContext);
+  const { registerStudent, error, isAuthenticated, registerFaculty, clearErrors } = authContext;
+  const { setAlert } = alertContext;
 
-function Register() {
   const [user, setUser] = useState({
     name: '',
     email: '',
-    role: '',
+    role: 'student',
     password: '',
     password2: '',
   });
 
   const { name, email, password, password2, role } = user;
 
+  useEffect(() => {
+    if (isAuthenticated && role === 'student') {
+      props.history.push('/student_dashboard');
+    }
+
+    if (isAuthenticated && role === 'faculty') {
+      props.history.push('/faculty_dashboard');
+    }
+
+    if (error) {
+      setAlert(error, 'danger');
+      clearErrors();
+    }
+    //eslint-disable-next-line  
+  }, [isAuthenticated, error, props.history]);
+
   const onChange = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value });
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (name === '' || email === '' || role === '' || password === '') {
+      setAlert('All fields are required', 'danger');
+    } else if (password !== password2) {
+      setAlert('Password do not match', 'danger');
+    } else {
+      if (role === 'student') {
+        registerStudent(user);
+      }
+
+      if (role === 'faculty') {
+        registerFaculty(user);
+      }
+    }
   };
 
   return (
@@ -29,7 +69,8 @@ function Register() {
             </h2>
           </div>
           <div className='card-body'>
-            <form>
+            <Alert />
+            <form onSubmit={onSubmit}>
               <div className='form-group mb-3' onChange={onChange}>
                 <label className='mr-5'>
                   Student

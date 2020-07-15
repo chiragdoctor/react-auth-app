@@ -1,25 +1,33 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Dashboard from './components/Dashboard';
+import StudentDashboard from './components/StudentDashboard';
+import FacultyDashboard from './components/FacultyDashboard';
 import NotFound from './components/NotFound';
 import Login from './components/Login';
 import Register from './components/Register';
+import AuthState from './context/auth/authState';
+import AlertState from './context/alert/alertState';
 
 const App = () => {
   return (
-    <Router>
-      <section className='body'>
-        <div className='inner-wrapper'>
-          <Switch>
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/' component={Dashboard} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
-      </section>
-    </Router>
+    <AuthState>
+      <AlertState>
+        <Router>
+          <section className='body'>
+            <div className='inner-wrapper'>
+              <Switch>
+                <Route exact path='/register' component={Register} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/student_dashboard' component={StudentDashboard} />
+                <Route exact path='/faculty_dashboard' component={FacultyDashboard} />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
+          </section>
+        </Router>
+      </AlertState>
+    </AuthState>
   );
 };
 
