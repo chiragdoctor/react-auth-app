@@ -1,9 +1,15 @@
 import React, { useContext } from 'react';
 import AuthContext from '../../context/auth/authContext';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const authContext = useContext(AuthContext);
-  const { user } = authContext;
+  const { user, logout } = authContext;
+
+  const onLogoutHandler = () => {
+    logout();
+    window.location.href = '/login';
+  };
 
   return (
     <header className='header'>
@@ -242,9 +248,9 @@ function Header() {
 
             <i className='fa custom-caret'></i>
           </a>
-          <a role='menuitem' tabIndex='-1' href='pages-signin.html' style={{ marginLeft: 10 }}>
+          <Link role='menuitem' tabIndex='-1' href='pages-signin.html' style={{ marginLeft: 10 }} onClick={onLogoutHandler}>
             <i className='fas fa-power-off'></i> Logout
-          </a>
+          </Link>
 
           <div className='dropdown-menu'>
             <ul className='list-unstyled mb-2'>
