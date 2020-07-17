@@ -13,18 +13,18 @@ const userLogin = async (req, res) => {
         return res.status(400).json({ errMsg: 'Invalid Password' });
       }
       const cypherToken = createToken(student._id, student.role);
-      res.status(200).json({ token: cypherToken });
+     return res.status(200).json({ token: cypherToken });
     } else if (faculty) {
       const isMatch = faculty.comparePassword(password);
       if (!isMatch) {
         return res.status(400).json({ errMsg: 'Invalid Password' });
       }
       const cypherToken = createToken(faculty._id, faculty.role);
-      res.status(200).json({ token: cypherToken });
+     return res.status(200).json({ token: cypherToken });
     }
   } catch (err) {
     console.log(err);
-    res.status(500).json({ errMsg: 'Login server Error ' });
+   return res.status(500).json({ errMsg: 'Login server Error ' });
   }
 };
 

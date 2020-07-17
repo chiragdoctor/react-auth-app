@@ -1,5 +1,3 @@
-/** @format */
-
 import { connect } from 'mongoose';
 import config from '../config/default';
 
@@ -13,7 +11,7 @@ export default async () => {
 			useFindAndModify: false,
 		};
 		await connect(URI, options);
-		console.log(`Database is connected with the app ..... 🌵 🌵`);
+		console.log(`Database is connected with the app 🔥🔥🔥`);
 	} catch (err) {
 		console.log('MongoErr :>> ', err);
 	}

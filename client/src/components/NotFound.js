@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from '../components/layouts/Sidebar';
 import Header from '../components/layouts/Header';
-function NotFound() {
+function NotFound() {  
   return (
     <>
       <Header />
