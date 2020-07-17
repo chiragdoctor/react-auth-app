@@ -66,7 +66,7 @@ function Header() {
 
                   <li>
                     <p className='clearfix mb-1'>
-                      <span className='message float-left'>Importing Contacts</span>
+                      <span className='message float-left'>Importing Contacts </span>
                       <span className='message float-right text-dark'>98%</span>
                     </p>
                     <div className='progress progress-xs light'>
