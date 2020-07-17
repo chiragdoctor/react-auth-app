@@ -61,7 +61,13 @@ function Login(props) {
               <div className='form-group mb-3'>
                 <label>Username</label>
                 <div className='input-group'>
-                  <input name='email' type='email' className='form-control form-control-lg placeholder' onChange={onChangeHandler} />
+                  <input
+                    name='email'
+                    type='email'
+                    className='form-control form-control-lg placeholder'
+                    onChange={onChangeHandler}
+                    value={email}
+                  />
                   <span className='input-group-append'>
                     <span className='input-group-text'>
                       <i className='fas fa-user'></i>
@@ -78,7 +84,13 @@ function Login(props) {
                   </a>
                 </div>
                 <div className='input-group'>
-                  <input name='password' type='password' className='form-control form-control-lg placeholder' onChange={onChangeHandler} />
+                  <input
+                    name='password'
+                    type='password'
+                    className='form-control form-control-lg placeholder'
+                    onChange={onChangeHandler}
+                    value={password}
+                  />
                   <span className='input-group-append'>
                     <span className='input-group-text'>
                       <i className='fas fa-lock'></i>

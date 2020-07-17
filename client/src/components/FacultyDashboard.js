@@ -5,12 +5,18 @@ import AuthContext from '../context/auth/authContext';
 
 function Dashboard() {
   const authContext = useContext(AuthContext);
-  const { user, loadUser } = authContext;
+  const { user, loadUser, logout } = authContext;
 
   useEffect(() => {
     loadUser();
     //eslint-disable-next-line
   }, []);
+
+  if (user && user.role === 'student') {
+    logout();
+    window.location.href = '/login';
+  }
+
   return (
     <>
       <Header />

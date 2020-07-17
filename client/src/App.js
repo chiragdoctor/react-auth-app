@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import AuthState from './context/auth/authState';
 import AlertState from './context/alert/alertState';
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
   return (
@@ -19,8 +20,8 @@ const App = () => {
               <Switch>
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/login' component={Login} />
-                <Route exact path='/student_dashboard' component={StudentDashboard} />
-                <Route exact path='/faculty_dashboard' component={FacultyDashboard} />
+                <PrivateRoute exact path='/student_dashboard' component={StudentDashboard} />
+                <PrivateRoute exact path='/faculty_dashboard' component={FacultyDashboard} />
                 <Route component={NotFound} />
               </Switch>
             </div>
